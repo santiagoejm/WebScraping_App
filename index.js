@@ -21,7 +21,25 @@ const coinMCScraper = async () => {
     ).map((x) => x.textContent);
   });
 
+  const coinSign = await page.evaluate(() => {
+    return Array.from(
+      document.querySelectorAll(
+        "#__next > div > div.main-content > div.sc-57oli2-0.comDeo.cmc-body-wrapper > div > div > div.h7vnx2-1.bFzXgL > table > tbody > tr > td:nth-child(3) > div > a > div > div > div > p"
+      )
+    ).map((x) => x.textContent);
+  });
+
+  const coinMarketCap = await page.evaluate(() => {
+    return Array.from(
+      document.querySelectorAll(
+        "#__next > div > div.main-content > div.sc-57oli2-0.comDeo.cmc-body-wrapper > div > div > div.h7vnx2-1.bFzXgL > table > tbody > tr > td:nth-child(7) > p > span.sc-1ow4cwt-1.ieFnWP"
+      )
+    ).map((x) => x.textContent);
+  });
+
   await fs.writeFile("coinNames.txt", coinName.join("\r\n"));
+  await fs.writeFile("coinSign.txt", coinSign.join("\r\n"));
+  await fs.writeFile("coinMarketCap.txt", coinMarketCap.join("\r\n"));
 
   await browser.close();
 };
