@@ -37,9 +37,13 @@ const coinMCScraper = async () => {
     ).map((x) => x.textContent);
   });
 
-  await fs.writeFile("coinNames.txt", coinName.join("\r\n"));
-  await fs.writeFile("coinSign.txt", coinSign.join("\r\n"));
-  await fs.writeFile("coinMarketCap.txt", coinMarketCap.join("\r\n"));
+  const top100Coins = [];
+  for (let i = 0; i < 100; i++) {
+    let coin = `Coin: ${coinName[i]} * Sign: ${coinSign[i]} * MarketCap: ${coinMarketCap[i]}`;
+    top100Coins.push(coin);
+  }
+
+  await fs.writeFile("top100crypto.txt", top100Coins.join("\r\n\n"));
 
   await browser.close();
 };
