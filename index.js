@@ -39,7 +39,9 @@ const coinMCScraper = async () => {
 
   const top100Coins = [];
   for (let i = 0; i < 100; i++) {
-    let coin = `Coin: ${coinName[i]} * Sign: ${coinSign[i]} * MarketCap: ${coinMarketCap[i]}`;
+    let coin = `Coin #${i + 1}: ${coinName[i]} * Sign: ${
+      coinSign[i]
+    } * MarketCap: ${coinMarketCap[i]}`;
     top100Coins.push(coin);
   }
 
